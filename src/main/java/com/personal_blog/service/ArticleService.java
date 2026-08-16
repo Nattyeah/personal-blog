@@ -11,8 +11,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class ArticleService {
 
-    private ArticleRepository repository;
-    private ArticleMapper mapper;
+    private final ArticleRepository repository;
+    private final ArticleMapper mapper;
+
+    public ArticleService(ArticleRepository repository, ArticleMapper mapper) {
+        this.repository = repository;
+        this.mapper = mapper;
+    }
 
     //    ADD
     public ArticleDto create(Article article) {
@@ -32,5 +37,15 @@ public class ArticleService {
     //    GET ALL
     public Page<ArticleDto> getAllArticles(Pageable pageable) {
         return repository.findAll(pageable).map(mapper::toDto);
+    }
+
+    //    GET BY ID
+    public ArticleDto getById(Long id) {
+        return mapper.toDto(repository.findById(id).orElse(null));
+    }
+
+    //    DELETE
+    public void delete(Long id) {
+        repository.deleteById(id);
     }
 }

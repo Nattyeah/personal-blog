@@ -1,34 +1,31 @@
 package com.personal_blog.service;
 
-import com.personal_blog.mapper.UserMapper;
-import com.personal_blog.model.UserDto;
 import com.personal_blog.model.entity.User;
 import com.personal_blog.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
+import java.util.ArrayList;
 
 @Slf4j
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
-    private UserRepository repository;
-    private UserMapper mapper;
+    private final UserRepository repository;
 
-    private UserDto findByEmail(User user) {
-        return mapper.toDto(repository.findByEmail(user.getEmail()));
+    public UserService(UserRepository repository) {
+        this.repository = repository;
     }
 
-    public UserDto createNewUser(User user) {
-        if (isUserRegistered(user)) {
-            log.error("User with email {} already exists", user.getEmail());
-            return null;
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = repository.findByEmail(email);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found with email: " + email);
         }
-        return mapper.toDto(repository.save(user));
-    }
-
-    private boolean isUserRegistered(User user) {
-        return Objects.nonNull(findByEmail(user));
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), new ArrayList<>());
     }
 }
