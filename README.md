@@ -119,7 +119,7 @@ The public section remains accessible without authentication, while administrati
 
 The application uses a relational database to store users and articles.
 
-For development purposes, H2 can be used as the database. PostgreSQL is also configured as a runtime database option.
+For development purposes, H2 can be used as the database.
 
 The main entities are:
 
