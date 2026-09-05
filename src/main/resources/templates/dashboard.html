@@ -14,7 +14,7 @@
 
     <h2>Dashboard</h2>
 
-    <a th:href="@{/articles/new}">
+    <a th:href="@{/articles/new}" class="add-article-button">
         Add New Article
     </a>
 
@@ -22,20 +22,38 @@
         <p>No articles published yet.</p>
     </div>
 
-    <ul th:unless="${articles.isEmpty()}">
-        <li th:each="article : ${articles}">
+    <div class="article-list" th:unless="${articles.isEmpty()}">
+
+        <div class="article-card" th:each="article : ${articles}">
+
             <a th:href="@{/articles/{id}(id=${article.id})}"
-               th:text="${article.title}">
+               th:text="${article.title}"
+               class="article-title">
                 Article title
             </a>
-            <a th:href="@{/articles/{id}/edit(id=${article.id})}">
-                Edit
-            </a>
-            <a th:href="@{/articles/{id}/delete(id=${article.id})}">
-                Delete
-            </a>
-        </li>
-    </ul>
+
+            <div class="article-actions">
+
+                <a th:href="@{/articles/{id}/edit(id=${article.id})}"
+                   class="edit-button">
+                    Edit
+                </a>
+
+                <form th:action="@{/articles/{id}/delete(id=${article.id})}"
+                      method="post"
+                      class="delete-form">
+
+                    <button type="submit" class="delete-button">
+                        Delete
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </main>
 

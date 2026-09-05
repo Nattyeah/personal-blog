@@ -56,6 +56,7 @@ nav {
 nav a {
     color: #4b5563;
     text-decoration: none;
+
     font-size: 15px;
     font-weight: 500;
 
@@ -85,22 +86,23 @@ nav a:hover {
     background: transparent;
     color: #4b5563;
 
+    border: none;
+    border-radius: 0;
+
     font-family: inherit;
     font-size: 15px;
     font-weight: 500;
 
-    border: none;
-    border-radius: 0;
-
     cursor: pointer;
 
     box-shadow: none;
+
+    transition: color 0.2s ease;
 }
 
 .logout-form button:hover {
     background: transparent;
     color: #dc2626;
-
     box-shadow: none;
 }
 
@@ -117,14 +119,60 @@ main {
 
 main h2 {
     margin-bottom: 24px;
+
     font-size: 28px;
     font-weight: 600;
+
     color: #111827;
 }
 
 
 /* =========================
-   ARTICLES
+   LINKS
+   ========================= */
+
+main a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+main a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   ADD ARTICLE
+   ========================= */
+
+.add-article-button {
+    display: inline-block;
+
+    padding: 10px 18px;
+
+    background-color: #2563eb;
+    color: #ffffff !important;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.add-article-button:hover {
+    background-color: #1d4ed8;
+    text-decoration: none;
+
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================
+   ARTICLES - PUBLIC
    ========================= */
 
 article {
@@ -150,6 +198,7 @@ article:hover {
 
 article h3 {
     margin-bottom: 8px;
+
     font-size: 21px;
 }
 
@@ -169,7 +218,157 @@ article p {
 
 
 /* =========================
-   BUTTONS
+   DASHBOARD
+   ========================= */
+
+.article-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+
+    margin-top: 24px;
+}
+
+.article-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 20px 24px;
+
+    background-color: #ffffff;
+
+    border-radius: 12px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =========================
+   DASHBOARD - ARTICLE TITLE
+   ========================= */
+
+.article-title {
+    color: #2563eb !important;
+
+    font-size: 18px;
+    font-weight: 500;
+
+    text-decoration: none;
+}
+
+.article-title:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   DASHBOARD - ACTIONS
+   ========================= */
+
+.article-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================
+   EDIT BUTTON
+   ========================= */
+
+.edit-button {
+    display: inline-block;
+
+    padding: 8px 16px;
+
+    background-color: #2563eb;
+    color: #ffffff !important;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.edit-button:hover {
+    background-color: #1d4ed8;
+
+    text-decoration: none;
+
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================
+   DELETE FORM
+   ========================= */
+
+.delete-form {
+    margin: 0;
+    padding: 0;
+
+    background: transparent;
+
+    box-shadow: none;
+}
+
+
+/* =========================
+   DELETE BUTTON
+   ========================= */
+
+.delete-button {
+    padding: 8px 16px;
+
+    background-color: #dc2626;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 6px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.delete-button:hover {
+    background-color: #b91c1c;
+
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================
+   BUTTONS - GENERAL
    ========================= */
 
 button,
@@ -276,95 +475,6 @@ textarea {
 
 
 /* =========================
-   LINKS / ACTIONS
-   ========================= */
-
-main > div:first-child {
-    margin-bottom: 24px;
-}
-
-main a {
-    color: #2563eb;
-    text-decoration: none;
-}
-
-main a:hover {
-    text-decoration: underline;
-}
-
-
-/* =========================
-   DASHBOARD
-   ========================= */
-
-table {
-    width: 100%;
-
-    margin-top: 24px;
-
-    border-collapse: collapse;
-
-    background-color: #ffffff;
-
-    border-radius: 10px;
-
-    overflow: hidden;
-
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-}
-
-thead {
-    background-color: #f9fafb;
-}
-
-th,
-td {
-    padding: 16px;
-
-    text-align: left;
-
-    border-bottom: 1px solid #e5e7eb;
-}
-
-th {
-    font-size: 14px;
-    font-weight: 600;
-    color: #374151;
-}
-
-td {
-    font-size: 14px;
-    color: #4b5563;
-}
-
-tbody tr:hover {
-    background-color: #f9fafb;
-}
-
-
-/* =========================
-   DASHBOARD ACTIONS
-   ========================= */
-
-td form {
-    display: inline;
-    padding: 0;
-
-    background: transparent;
-    box-shadow: none;
-}
-
-td form button {
-    background-color: #dc2626;
-    padding: 7px 12px;
-}
-
-td form button:hover {
-    background-color: #b91c1c;
-}
-
-
-/* =========================
    LOGIN
    ========================= */
 
@@ -390,6 +500,15 @@ form + p {
 
     font-size: 14px;
     color: #dc2626;
+}
+
+
+/* =========================
+   EMPTY STATE
+   ========================= */
+
+main > div p {
+    color: #6b7280;
 }
 
 
@@ -420,6 +539,7 @@ footer {
 
     .header-container {
         flex-direction: column;
+
         gap: 15px;
 
         text-align: center;
@@ -433,9 +553,24 @@ footer {
         margin-top: 25px;
     }
 
-    table {
-        display: block;
-        overflow-x: auto;
+    main h2 {
+        font-size: 24px;
+    }
+
+    .article-card {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .article-actions {
+        width: 100%;
+    }
+
+    .edit-button,
+    .delete-button {
+        flex: 1;
+        text-align: center;
     }
 
     article {
