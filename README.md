@@ -1,38 +1,140 @@
-You are required to build a personal blog where you can write and publish articles. The blog will have two sections: a guest section and an admin section.
+https://roadmap.sh/projects/personal-blog
 
-Guest Section — A list of pages that can be accessed by anyone:
+# Personal Blog
 
-Home Page: This page will display the list of articles published on the blog.
+This project is a personal blog web application where users can read published articles and an authenticated administrator can create, edit, and delete articles.
 
-Article Page: This page will display the content of the article along with the date of publication.
+The application is divided into two main sections: a public guest section and a protected admin section.
 
-Admin Section — are the pages that only you can access to publish, edit, or delete articles.
+## Features
 
-Dashboard: This page will display the list of articles published on the blog along with the option to add a new article, edit an existing article, or delete an article.
+### Guest Section
 
-Add Article Page: This page will contain a form to add a new article. The form will have fields like title, content, and date of publication.
+The guest section can be accessed by anyone without authentication.
 
-Edit Article Page: This page will contain a form to edit an existing article. The form will have fields like title, content, and date of publication.
+- View the blog home page.
+- View a list of published articles.
+- Open and read individual articles.
+- View the publication date and content of each article.
 
-Here are the mockups to give you an idea of the different pages of the blog.
+### Admin Section
 
-Pages that anyone can access
+The admin section is protected by Spring Security and can only be accessed by an authenticated administrator.
 
-Personal Blog
-Pages that only the admin can access
+- Login using username and password.
+- Access the admin dashboard.
+- View all published articles.
+- Create new articles.
+- Edit existing articles.
+- Delete articles.
+- Logout from the application.
 
-Personal Blog
-How to Implement
-Here are some guidelines to help you implement the personal blog:
+## Technologies
 
-Storage
-To keep things simple for now, you can use the filesystem to store the articles. Each article will be stored as a separate file in a directory. The file will contain the title, content, and date of publication of the article. You can use JSON or Markdown format to store the articles.
+- Java 21
+- Spring Boot
+- Spring MVC
+- Spring Security
+- Spring Data JPA
+- Thymeleaf
+- H2 Database
+- PostgreSQL
+- Lombok
+- MapStruct
+- Gradle
 
-Backend
-You can use any programming language to build the backend of the blog. You don't have to make it as an API for this project, we have other projects for that. You can have pages that render the HTML directly from the server and forms that submit data to the server.
+## Project Structure
 
-Frontend
-For the frontend, you can use HTML and CSS (no need for JavaScript for now). You can use any templating engine to render the articles on the frontend.
+The application follows a layered architecture:
 
-Authentication
-You can implement basic authentication for the admin section. You can either use the standard HTTP basic authentication or simply hardcode the username and password in the code for now and create a simple login page that will create a session for the admin.
+- **Controller** — Handles HTTP requests and returns the appropriate Thymeleaf views.
+- **Service** — Contains the application's business logic.
+- **Repository** — Responsible for communication with the database.
+- **Entity** — Represents the database entities.
+- **DTO** — Objects used to transfer data between application layers.
+- **Mapper** — Responsible for converting entities into DTOs and vice versa.
+- **Configuration** — Contains the Spring Security configuration.
+
+## Authentication
+
+The admin section uses Spring Security to protect restricted pages.
+
+Users who are not authenticated can access the public pages, while the dashboard and article management pages require authentication.
+
+The authentication flow is based on a username and password stored in the database. Spring Security uses the application's `UserService` to load the user and validate the provided credentials.
+
+## How to Run the Application
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Nattyeah/personal-blog
+
+2. Navigate to the project directory:
+   ```bash
+   cd personal-blog
+
+3. Build the project using Gradle:
+   ```bash
+   ./gradlew clean build
+
+   On Windows:
+
+   gradlew.bat clean build
+
+4. Run the application:
+   ```bash
+   ./gradlew bootRun
+
+   On Windows:
+
+   gradlew.bat bootRun
+
+5. Open a web browser and go to:
+   ```bash
+   http://localhost:8080
+
+## Application Pages
+### Public Pages
+- / — Home page with the list of published articles.
+- /articles/{id} — Individual article page.
+- /login — Administrator login page.
+### Admin Pages
+- /dashboard — Administrator dashboard.
+- /articles/new — Create a new article.
+- /articles/{id}/edit — Edit an existing article.
+- /articles/{id}/delete — Delete an article.
+
+## How It Works
+
+The home page displays the articles available in the database.
+
+When an administrator logs in successfully, Spring Security creates an authenticated session and redirects the user to the dashboard.
+
+From the dashboard, the administrator can manage the articles by creating new articles, editing existing ones, or deleting them.
+
+The public section remains accessible without authentication, while administrative operations are restricted to authenticated users.
+
+## Database
+
+The application uses a relational database to store users and articles.
+
+For development purposes, H2 can be used as the database. PostgreSQL is also configured as a runtime database option.
+
+The main entities are:
+
+**User** — Stores the administrator credentials.   
+**Article** — Stores the title, content, and publication date of each article.
+
+## Future Improvements
+
+Some possible improvements for future versions include:
+
+- Add pagination to the dashboard.
+- Add article search functionality.
+- Improve validation and error handling.
+- Add confirmation before deleting an article.
+- Add categories and tags to articles.
+- Add support for multiple administrators and roles.
+- Improve the frontend with a more responsive design.
+- Add automated tests for controllers and services.
