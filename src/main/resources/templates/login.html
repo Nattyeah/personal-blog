@@ -1,15 +1,55 @@
-<form method="post" action="/login">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Personal Blog</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
 
-    <input type="email"
-           name="username"
-           placeholder="Email">
+<main>
 
-    <input type="password"
-           name="password"
-           placeholder="Password">
+    <h1>Admin Login</h1>
 
-    <button type="submit">
-        Login
-    </button>
+    <form th:action="@{/login}" method="post">
 
-</form>
+        <div>
+            <label for="username">Email</label>
+            <input
+                    type="email"
+                    id="username"
+                    name="username"
+                    required>
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required>
+        </div>
+
+        <button type="submit">
+            Login
+        </button>
+
+    </form>
+
+    <p th:if="${param.error}">
+        Invalid email or password.
+    </p>
+
+    <p th:if="${param.logout}">
+        You have been logged out.
+    </p>
+
+    <a th:href="@{/}">
+        Back to home
+    </a>
+
+</main>
+
+</body>
+</html>

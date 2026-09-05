@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Article - Personal Blog</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header>
+    <h1>Edit Article</h1>
+
+    <nav>
+        <a th:href="@{/dashboard}">
+            Dashboard
+        </a>
+    </nav>
+</header>
+
+<main>
+
+    <form
+            th:action="@{/articles/{id}(id=${article.id})}"
+            th:object="${article}"
+            method="post">
+
+        <div>
+            <label for="title">
+                Title
+            </label>
+
+            <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    th:value="${article.title}"
+                    required>
+        </div>
+
+        <div>
+            <label for="content">
+                Content
+            </label>
+
+            <textarea
+                    id="content"
+                    name="content"
+                    rows="15"
+                    th:text="${article.content}"
+                    required></textarea>
+        </div>
+
+        <div>
+            <label for="publishDate">Publication Date</label>
+
+            <input type="date"
+                   id="publishDate"
+                   th:field="*{publishDate}"
+                   required
+                   th:classappend="${#fields.hasErrors('publishDate')} ? 'is-invalid'">
+
+            <small class="field-error"
+                   th:if="${#fields.hasErrors('publishDate')}"
+                   th:errors="*{publishDate}">
+            </small>
+        </div>
+
+        <button type="submit">
+            Save Changes
+        </button>
+
+    </form>
+
+</main>
+
+</body>
+</html>

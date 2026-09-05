@@ -1,0 +1,444 @@
+/* =========================
+   RESET
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f7fa;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.header-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 24px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #111827;
+}
+
+
+/* =========================
+   NAVIGATION
+   ========================= */
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav a {
+    color: #4b5563;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+
+    transition: color 0.2s ease;
+}
+
+nav a:hover {
+    color: #2563eb;
+}
+
+
+/* =========================
+   LOGOUT
+   ========================= */
+
+.logout-form {
+    margin: 0;
+    padding: 0;
+
+    background: transparent;
+    box-shadow: none;
+}
+
+.logout-form button {
+    padding: 0;
+
+    background: transparent;
+    color: #4b5563;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+
+    border: none;
+    border-radius: 0;
+
+    cursor: pointer;
+
+    box-shadow: none;
+}
+
+.logout-form button:hover {
+    background: transparent;
+    color: #dc2626;
+
+    box-shadow: none;
+}
+
+
+/* =========================
+   MAIN
+   ========================= */
+
+main {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 24px;
+}
+
+main h2 {
+    margin-bottom: 24px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #111827;
+}
+
+
+/* =========================
+   ARTICLES
+   ========================= */
+
+article {
+    background-color: #ffffff;
+
+    padding: 24px;
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+article:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.09);
+}
+
+article h3 {
+    margin-bottom: 8px;
+    font-size: 21px;
+}
+
+article h3 a {
+    color: #111827;
+    text-decoration: none;
+}
+
+article h3 a:hover {
+    color: #2563eb;
+}
+
+article p {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+button,
+.button {
+    border: none;
+    border-radius: 6px;
+
+    padding: 10px 18px;
+
+    background-color: #2563eb;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+button:hover,
+.button:hover {
+    background-color: #1d4ed8;
+
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================
+   FORMS
+   ========================= */
+
+form {
+    background-color: #ffffff;
+
+    padding: 28px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+form div {
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #374151;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+
+    padding: 11px 13px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+
+    background-color: #ffffff;
+
+    font-family: inherit;
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* =========================
+   INPUT FOCUS
+   ========================= */
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* =========================
+   TEXTAREA
+   ========================= */
+
+textarea {
+    min-height: 250px;
+    resize: vertical;
+}
+
+
+/* =========================
+   LINKS / ACTIONS
+   ========================= */
+
+main > div:first-child {
+    margin-bottom: 24px;
+}
+
+main a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+main a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   DASHBOARD
+   ========================= */
+
+table {
+    width: 100%;
+
+    margin-top: 24px;
+
+    border-collapse: collapse;
+
+    background-color: #ffffff;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+thead {
+    background-color: #f9fafb;
+}
+
+th,
+td {
+    padding: 16px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+td {
+    font-size: 14px;
+    color: #4b5563;
+}
+
+tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+
+/* =========================
+   DASHBOARD ACTIONS
+   ========================= */
+
+td form {
+    display: inline;
+    padding: 0;
+
+    background: transparent;
+    box-shadow: none;
+}
+
+td form button {
+    background-color: #dc2626;
+    padding: 7px 12px;
+}
+
+td form button:hover {
+    background-color: #b91c1c;
+}
+
+
+/* =========================
+   LOGIN
+   ========================= */
+
+body:has(main > form) {
+    min-height: 100vh;
+}
+
+main form {
+    max-width: 600px;
+}
+
+main form button {
+    margin-top: 5px;
+}
+
+
+/* =========================
+   LOGIN MESSAGES
+   ========================= */
+
+form + p {
+    margin-top: 15px;
+
+    font-size: 14px;
+    color: #dc2626;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer {
+    max-width: 1100px;
+
+    margin: 60px auto 0;
+    padding: 24px;
+
+    border-top: 1px solid #e5e7eb;
+
+    text-align: center;
+
+    color: #9ca3af;
+    font-size: 14px;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 768px) {
+
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+
+        text-align: center;
+    }
+
+    nav {
+        gap: 15px;
+    }
+
+    main {
+        margin-top: 25px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    article {
+        padding: 20px;
+    }
+}

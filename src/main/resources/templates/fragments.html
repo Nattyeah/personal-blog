@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+
+    <title th:text="${title}">
+        Personal Blog
+    </title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<header th:fragment="header">
+
+    <div class="header-container">
+
+        <h1>
+            Personal Blog
+        </h1>
+
+        <nav>
+
+            <!-- Público -->
+            <a th:href="@{/}">
+                Home
+            </a>
+
+            <!-- Somente usuário autenticado -->
+            <a sec:authorize="isAuthenticated()"
+               th:href="@{/dashboard}">
+                Dashboard
+            </a>
+
+            <!-- Somente usuário não autenticado -->
+            <a sec:authorize="!isAuthenticated()"
+               th:href="@{/login}">
+                Login
+            </a>
+
+            <!-- Somente usuário autenticado -->
+            <form sec:authorize="isAuthenticated()"
+                  th:action="@{/logout}"
+                  method="post"
+                  class="logout-form">
+
+                <button type="submit">
+                    Logout
+                </button>
+
+            </form>
+
+        </nav>
+
+    </div>
+
+</header>
+
+<footer th:fragment="footer">
+
+    <p>
+        Personal Blog
+    </p>
+
+</footer>
+
+</body>
+</html>

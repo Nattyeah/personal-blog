@@ -1,22 +1,18 @@
 package com.personal_blog.controller;
 
-import com.personal_blog.model.ArticleDto;
 import com.personal_blog.model.entity.Article;
 import com.personal_blog.service.ArticleService;
-import org.springframework.data.domain.Page;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/v1/api")
+@Controller
 public class AdminController {
 
     private final ArticleService articleService;
@@ -25,19 +21,54 @@ public class AdminController {
         this.articleService = articleService;
     }
 
-    @PostMapping("/articles")
-    public ResponseEntity<ArticleDto> create(@RequestBody Article article) {
-        return ResponseEntity.ok().body(articleService.create(article));
+    @GetMapping("/articles/{id}")
+    public String article(@PathVariable Long id, Model model) {
+        model.addAttribute("article", articleService.getById(id));
+        return "article";
     }
 
-    @PatchMapping("/articles/{id}")
-    public ResponseEntity<Article> update(@RequestBody Article article, @PathVariable Long id) {
-        return ResponseEntity.ok().body(articleService.update(article, id));
+    @GetMapping("/dashboard")
+    public String dashboard(Model model, Pageable pageable) {
+        model.addAttribute("articles", articleService.getAllArticles(pageable));
+        return "dashboard";
     }
-// TODO ver se implementacao vai funcionar
-    @DeleteMapping("/articles/{id}")
-    public ResponseEntity<ArticleDto> deleteArticle(@PathVariable Long id) {
+
+    @GetMapping("/articles/new")
+    public String newArticleForm(Model model) {
+        model.addAttribute("article", new Article());
+        return "add-article";
+    }
+
+    @PostMapping("/articles")
+    public String create(@Valid @ModelAttribute Article article,
+                         BindingResult result) {
+        if (result.hasErrors()) {
+            return "add-article";
+        }
+
+        articleService.create(article);
+        return "redirect:/dashboard";
+    }
+
+    @GetMapping("/articles/{id}/edit")
+    public String editArticleForm(@PathVariable Long id, Model model) {
+        model.addAttribute("article", articleService.getById(id));
+        return "edit-article";
+    }
+
+    @PostMapping("/articles/{id}")
+    public String update(@Valid @ModelAttribute Article article, @PathVariable Long id, BindingResult result) {
+        if (result.hasErrors()) {
+            return "edit-article";
+        }
+
+        articleService.update(article, id);
+        return "redirect:/dashboard";
+    }
+
+    @PostMapping("/articles/{id}/delete")
+    public String deleteArticle(@PathVariable Long id) {
         articleService.delete(id);
-        return ResponseEntity.noContent().build();
+        return "redirect:/dashboard";
     }
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments :: head('Home - Personal Blog')}">
+</head>
+
+<body>
+
+<header th:replace="~{fragments :: header}">
+</header>
+
+<main>
+
+    <h2>Articles</h2>
+
+    <div th:if="${articles.isEmpty()}">
+        <p>No articles published yet.</p>
+    </div>
+
+    <article th:each="article : ${articles}">
+
+        <h3>
+            <a th:href="@{/articles/{id}(id=${article.id})}"
+               th:text="${article.title}">
+                Article title
+            </a>
+        </h3>
+
+        <p>
+            Published:
+            <span th:text="${article.publishDate}">
+                2026-08-22
+            </span>
+        </p>
+
+    </article>
+
+</main>
+
+<footer th:replace="~{fragments :: footer}">
+</footer>
+
+</body>
+</html>

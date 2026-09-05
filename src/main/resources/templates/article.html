@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${article.title}">Article</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header>
+    <h1>Personal Blog</h1>
+
+    <nav>
+        <a th:href="@{/}">Home</a>
+    </nav>
+</header>
+
+<main>
+
+    <article>
+
+        <h2 th:text="${article.title}">
+            Article title
+        </h2>
+
+        <p>
+            Published:
+            <span th:text="${article.publishDate}">
+                2026-08-22
+            </span>
+        </p>
+
+        <div th:text="${article.content}">
+            Article content
+        </div>
+
+    </article>
+
+</main>
+
+</body>
+</html>

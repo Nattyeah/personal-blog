@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments :: head('Dashboard - Personal Blog')}">
+</head>
+
+<body>
+
+<header th:replace="~{fragments :: header}">
+</header>
+
+<main>
+
+    <h2>Dashboard</h2>
+
+    <a th:href="@{/articles/new}">
+        Add New Article
+    </a>
+
+    <div th:if="${articles.isEmpty()}">
+        <p>No articles published yet.</p>
+    </div>
+
+    <ul th:unless="${articles.isEmpty()}">
+        <li th:each="article : ${articles}">
+            <a th:href="@{/articles/{id}(id=${article.id})}"
+               th:text="${article.title}">
+                Article title
+            </a>
+            <a th:href="@{/articles/{id}/edit(id=${article.id})}">
+                Edit
+            </a>
+            <a th:href="@{/articles/{id}/delete(id=${article.id})}">
+                Delete
+            </a>
+        </li>
+    </ul>
+
+</main>
+
+<footer th:replace="~{fragments :: footer}">
+</footer>
+
+</body>
+</html>

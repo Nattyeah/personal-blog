@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class ArticleService {
 
@@ -21,11 +23,14 @@ public class ArticleService {
 
     //    ADD
     public ArticleDto create(Article article) {
+        validatePublishDate(article.getPublishDate());
         return mapper.toDto(repository.save(article));
     }
 
     //    EDIT
     public Article update(Article article, Long id) {
+        validatePublishDate(article.getPublishDate());
+
         return repository.findById(id).stream().map(article1 -> {
             article1.setTitle(article.getTitle());
             article1.setPublishDate(article.getPublishDate());
@@ -47,5 +52,11 @@ public class ArticleService {
     //    DELETE
     public void delete(Long id) {
         repository.deleteById(id);
+    }
+
+    private void validatePublishDate(LocalDate publishDate) {
+        if (publishDate == null || publishDate.isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("Publish date cannot be in the past.");
+        }
     }
 }
