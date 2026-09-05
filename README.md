@@ -1,5 +1,3 @@
-https://roadmap.sh/projects/personal-blog
-
 # Personal Blog
 
 This project is a personal blog web application where users can read published articles and an authenticated administrator can create, edit, and delete articles.
